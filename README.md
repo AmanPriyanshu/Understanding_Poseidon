@@ -24,6 +24,7 @@ Poseidon, an application that leverages software defined networks (SDN) to acqui
 This the bash file which allows for all the commands to interface with poseidon.
 Usage: poseidon [option]
 Options:
+
     -a,  api           get url to the Poseidon API
     -c,  config        display current configuration info
     -d,  delete        delete Poseidon installation (uses sudo)
@@ -38,6 +39,8 @@ Options:
     -u,  update        update Poseidon repo, optionally supply a version or 'master' (uses sudo)
     -v,  viz/visualize get url to visualize Poseidon with CRviz
     -V,  version       get the version installed"
+    
+    
 #### Requirements:
 1. Installs: curl, docker, docker-compose, jq, wget, git. On its own using the commands:
 `

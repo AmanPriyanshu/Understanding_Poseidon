@@ -242,5 +242,79 @@ This defines the Poseidon Shell Completely:
             'os linux', 'os mac', 'history', 'version', 'what', 'where', 'all']
 `
 2. show_all(self, arg, flags): Show all things on the network
+`
+valid, fields, sort_by, max_width, unique, nonzero, output_format, ipv4_only, ipv6_only, ipv4_and_ipv6
+`
+3. show_state(self, arg, flags): Show all things on the network that match a state
+`
+Fields = ['Switch', 'Port', 'State',
+                  'Ethernet Vendor', 'Mac', 'IPv4', 'IPv6']
+`
+4. show_behavior(self, arg, flags):Show all things on the network that match a behavior
+5. show_os(self, arg, flags): Show all things on the network operating on same os
+6. show_what(self, arg, flags): Find out what something is using the command: what_is(arg):
+`
+        WHAT [IP|MAC|ID]
+        WHAT 10.0.0.1
+        WHAT 18:EF:02:2D:49:00
+        WHAT 8579d412f787432c1a3864c1833e48efb6e61dd466e39038a674f64652129293
+`
+7. show_history(self, arg, flags): Find out the history of something on the network:
+`
+        HISTORY [IP|MAC|ID]
+        HISTORY 10.0.0.1
+        HISTORY 18:EF:02:2D:49:00
+        HISTORY 8579d412f787432c1a3864c1833e48efb6e61dd466e39038a674f64652129293
+`
+8. show_acls(self, arg, flags): Find out the history of ACLs of something on the network
+`
+        ACLS [IP|MAC|ID]
+        ACLS 10.0.0.1
+        ACLS 18:EF:02:2D:49:00
+        ACLS 8579d412f787432c1a3864c1833e48efb6e61dd466e39038a674f64652129293
+`
+9. show_where(self, arg, flags): Find out where something is
+`
+        WHERE [IP|MAC|ID]
+        WHERE 10.0.0.1
+        WHERE 18:EF:02:2D:49:00
+        WHERE 8579d412f787432c1a3864c1833e48efb6e61dd466e39038a674f64652129293
+`
+10. help_show(self): Help command
+11. task_set(self, arg, flags): Set the state of things on the network:
+`
+        SET [IP|MAC|ID] [STATE]
+        SET 10.0.0.1 INACTIVE
+        SET ABNORMAL UNKNOWN (TODO - NOT IMPLEMENTED YET)
+        SET 18:EF:02:2D:49:00 KNOWN
+        SET 8579d412f787432c1a3864c1833e48efb6e61dd466e39038a674f64652129293 SHUTDOWN
+`
+12. task_ignore(self, arg, flags): Ignore something on the network:
+`
+        IGNORE [IP|MAC|ID]
+        IGNORE 10.0.0.1
+        IGNORE 18:EF:02:2D:49:00
+        IGNORE 8579d412f787432c1a3864c1833e48efb6e61dd466e39038a674f64652129293
+        IGNORE INACTIVE
+`
+13. task_clear(self, arg, flags): Stop ignoring something on the network:
+`
+        CLEAR [IP|MAC|ID]
+        CLEAR 10.0.0.1
+        CLEAR 18:EF:02:2D:49:00
+        CLEAR 8579d412f787432c1a3864c1833e48efb6e61dd466e39038a674f64652129293
+        CLEAR IGNORED
+`
+14. task_remove(self, arg, flags): Remove something on the network until it's seen again:
+`
+        REMOVE [IP|MAC|ID]
+        REMOVE 10.0.0.1
+        REMOVE 18:EF:02:2D:49:00
+        REMOVE 8579d412f787432c1a3864c1833e48efb6e61dd466e39038a674f64652129293
+        REMOVE IGNORED
+        REMOVE INACTIVE
+`
+## 
+
 
 ## 

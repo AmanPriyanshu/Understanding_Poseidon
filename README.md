@@ -19,6 +19,65 @@ So final output would be: ((eth_src, ip_src), (eth_dst, ip_dst))
 
 3. def main():Generate a compressed CSV of MAC/IP/file mappings from pcaps. It calls the above two functions sequentially to create the compressed csv file.
 
-##
+## https://github.com/CyberReboot/poseidon/blob/master/bin/poseidon
+Poseidon, an application that leverages software defined networks (SDN) to acquire and then feed network traffic to a number of machine learning techniques. For more info visit: https://github.com/CyberReboot/poseidon
+This the bash file which allows for all the commands to interface with poseidon.
+Usage: poseidon [option]
+Options:
+    -a,  api           get url to the Poseidon API
+    -c,  config        display current configuration info
+    -d,  delete        delete Poseidon installation (uses sudo)
+    -e,  shell         enter into the Poseidon shell, requires Poseidon to already be running
+    -h,  help          print this help
+    -i,  install       install Poseidon repo (uses sudo)
+    -l,  logs          display the information logs about what Poseidon is doing
+    -p,  pipette       run pipette to support volos
+    -r,  restart       restart the Poseidon service (uses sudo)
+    -s,  start         start the Poseidon service (uses sudo)
+    -S,  stop          stop the Poseidon service (uses sudo)
+    -u,  update        update Poseidon repo, optionally supply a version or 'master' (uses sudo)
+    -v,  viz/visualize get url to visualize Poseidon with CRviz
+    -V,  version       get the version installed"
+#### Requirements:
+1. Installs: curl, docker, docker-compose, jq, wget, git. On its own using the commands:
+`
+for req_cmd in curl docker docker-compose jq wget git ; do
+            $req_cmd --help > /dev/null || die "$req_cmd must be installed"
+    done
+`
+#### Objectives:
+1. Command Line Options:
+-a: Gives a port_map of all connections sitting under Poseidon at this point this allows Poseidon assess whether it is running or not.
+-c: Gives out "$POSEIDON_PREFIX"/opt/poseidon/poseidon.config basically gives out Poseidon Configuration
+-d: Deletes
+-h: Shows help
+-i -z: Installs Poseidon Latest Release: curl -s https://api.github.com/repos/cyberreboot/poseidon/releases/latest
+-i: curl -L https://github.com/cyberreboot/poseidon/tarball/"$2" here $2 could be say, "v0.11.0" or version name
+Followed by this -i will update current Poseidon by changing:
+a. "$POSEIDON_PREFIX"/opt/poseidon/config/poseidon.config
+b. "$POSEIDON_PREFIX"/opt/poseidon/bin/gen_pcap_manifest
+c. "$POSEIDON_PREFIX"/opt/poseidon
+-l: Returns logs of all the pcaps assessed by Poseidon: `tail -n 100 -f /var/log/poseidon/poseidon.log`
+-p: Runs Pipette
+-r: Restarts Poseidon
+-e: Starts Posedion shell
+-s: Starts Posedion
+-S: Stops Poseidon
+-u: Updates Poseidon by changing:
+a. /usr/local/bin/gen_pcap_manifest from https://raw.githubusercontent.com/CyberReboot/poseidon/master/bin/gen_pcap_manifest
+b. /usr/local/bin/poseidon from https://raw.githubusercontent.com/CyberReboot/poseidon/master/bin/poseidon
+-v: Visualise using crvix, shows port map on crvix 
+-V: Returns running version
+
+2. check_files:
+Checks whether different files/directories exist or not. (/var/log/faucet, /var/log/faucet/faucet.log, /var/log/faucet/faucet_exception.log, /var/log/faucet/faucet.log, /var/log/faucet/faucet_exception.log, /var/log/poseidon, /var/log/poseidon/poseidon.log, "$POSEIDON_PREFIX"/etc/faucet/, "$POSEIDON_PREFIX"/etc/faucet/faucet.yaml.
+
+3. parse_config:
+Configures and redies Pipette
+
+4. run_pipette:
+Runs pipette and complete its installation
+
+## https://github.com/CyberReboot/poseidon/blob/master/config/poseidon.config
 
 

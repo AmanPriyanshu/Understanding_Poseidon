@@ -80,7 +80,11 @@ Configures and redies Pipette
 
 4. run_pipette:
 Runs pipette and complete its installation
-
+What is Pipette? https://github.com/CyberReboot/pipette
+Pipette is a tool that allows users to multiplex SDN coprocessing by implementing transparent L3 NAT. Pipette does this by creating a virtual network behind your coprocessor port and then acting as the SDN controller of that network. Packets are seamlessly switched to their appropriate destination using Ryu.
 ## https://github.com/CyberReboot/poseidon/blob/master/config/poseidon.config
+Tells Poseidon about defferent parameters and their configurations for use.
+#### Objectives:
+Sets up configurations for: Poseidon, NetworkML, Faucet, Bcf (did not find), Volos, Pipette.
 
 

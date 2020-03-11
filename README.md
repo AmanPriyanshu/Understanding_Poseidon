@@ -93,5 +93,27 @@ Installs: https://github.com/yeasy/simple-web, simple-web is a simple web to sho
 #### Objectives:
 Starts Volos.
 
-## 
+## https://github.com/CyberReboot/poseidon/blob/master/healthcheck/hc.py
+Performs basic health checkup on Poseidon, it is linked with the main GitHub Rep @ https://github.com/CyberReboot/poseidon
+#### Requirements: https://github.com/CyberReboot/poseidon/blob/master/healthcheck/requirements.txt
+flask and healthcheck
 
+##  https://github.com/CyberReboot/poseidon/blob/master/helpers/faucet/dashboards.yaml
+Configures dashboard settings.
+
+## https://github.com/CyberReboot/poseidon/blob/master/helpers/faucet/docker-compose-faucet.yaml
+Configures and sets up faucet
+
+## https://github.com/CyberReboot/poseidon/blob/master/helpers/faucet/docker-compose-monitoring.yaml
+Configures and sets up prometheus, for Monitoring system & time series database
+
+## https://github.com/CyberReboot/poseidon/blob/master/helpers/faucet/docker-compose.yaml
+Sets and configures RabbitMQ (https://hub.docker.com/r/faucet/event-adapter-rabbitmq-pi) 
+
+## https://github.com/CyberReboot/poseidon/blob/master/helpers/faucet/faucet.rules.yml
+Configures faucet rules: 
+#### Objectives:
+1. Convert OF stats to rates
+2. Sum hosts learned on VLANs
+3. Sum hosts learned on ports
+4. Convert Port stats to rates (rate for 1m)

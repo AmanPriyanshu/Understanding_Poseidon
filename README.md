@@ -141,5 +141,106 @@ The main entry point for Poseidon Command Line
 7. gets ipv4 data: _get_ipv4(endpoint)
 8. returns ipv4 subnet: _get_ipv4_subnet(endpoint)
 9. Returns ether vendor: _get_ether_vendor(endpoint)
-10. 
+10. Returns reverse dns of ipv4: _get_ipv4_rdns(endpoint)
+11. Returns reverse dns of ipv6: _get_ipv6_rdns(endpoint)
+12. Returns ipv6 address:  _get_ipv6(endpoint)
+13. Returns the ipv6 subnet: _get_ipv6_subnet(endpoint)
+14. Returns controller type: _get_controller_type(endpoint)
+15. Returns controller: _get_controller(endpoint)
+16. Reutns boolean for whether to ignor current node or not: _get_ignored(endpoint)
+17. Returns current state: _get_state(endpoint)
+18. Returns following state: _get_next_state(endpoint)
+19. Returns start time of node (Y-M-D-H-M-S):  _get_first_seen(endpoint)
+20. Returns last seen time for chosen node (YMDHMS): _get_last_seen(endpoint)
+21. Returns latest meta data: _get_newest_metadata(metadata)
+22. Returns most recently evaluated role from latest meta_data {_get_newest_metadata(metadata)}: _get_role(endpoint)
+23. Returns confidence from the most recently evaluated role from latest meta_data {_get_newest_metadata(metadata)}: _get_role_confidence(endpoint)
+24. Returns behaviour of node from latest meta data: _get_behavior(endpoint)
+25. Returns pcap labels from the latest meta data: _get_pcap_labels(endpoint)
+26. Returns os of ipv4/ipv6: _get_ipv4_os(endpoint)/_get_ipv6_os(endpoint)
+27. Returns the first and the last state followed by start time and duration of the endpoint/node: _get_prev_states(endpoint)
+28. Gets the history of a particular endpoint: _get_history(endpoint)
+#### Parser
+1. __init__(self): Defining default items to be parsed etc.: 
+Default fields: ['IPv4', 'IPv4 rDNS', 'Role', 'IPv4 OS', 'Ethernet Vendor', 'MAC Address', 'Pcap labels']
+All fields: ['ID', 'MAC Address', 'Switch', 'Port', 'VLAN', 'IPv4',
+            'IPv4 Subnet', 'IPv6', 'IPv6 Subnet', 'Ethernet Vendor', 'Ignored',
+            'State', 'Next State', 'First Seen', 'Last Seen',
+            'Previous States', 'IPv4 OS(p0f)', 'IPv6 OS(p0f)', 'Previous IPv4 OSes(p0f)',
+            'Previous IPv6 OSes(p0f)', 'Role(NetworkML)', 'Role Confidence(NetworkML)', 'Previous Roles(NetworkML)',
+            'Previous Role Confidences(NetworkML)', 'Behavior(NetworkML)', 'Previous Behaviors(NetworkML)',
+            'IPv4 rDNS', 'IPv6 rDNS', 'SDN Controller Type', 'SDN Controller URI', 'History', 'ACL History',
+            'Pcap labels']
+2. completion(text, line, completions): Completes cut off senetences which have similar beginnings.
+3. get_flags(text): Evaluating a command from terminal sequentially. By breaking them into boolean flags.
+4. check_flags(self, flags, fields, sort_by=0, max_width=0, unique=False, nonzero=False, output_format='table', ipv4_only=True, ipv6_only=False, ipv4_and_ipv6=False): It evaluates the boolean returned by the above function and returns valid, fields, sort_by, max_width, unique, nonzero, output_format, ipv4_only, ipv6_only, ipv4_and_ipv6.
+5. display_ip_filter(fields, ipv4_only, ipv6_only, ipv4_and_ipv6): Returns filtered_fields of ip addresses they include: IPV4_FIELD, IPV6_FIELD
+6. display_results(self, endpoints, fields, sort_by=0, max_width=0, unique=False, nonzero=False, output_format='table', ipv4_only=True, ipv6_only=False, ipv4_and_ipv6=False): Looks up different fields and their values as well as defines their id.
+`
+fields_lookup = {'id': (GetData._get_name, 0),
+                         'mac': (GetData._get_mac, 1),
+                         'mac address': (GetData._get_mac, 1),
+                         'switch': (GetData._get_switch, 2),
+                         'port': (GetData._get_port, 3),
+                         'vlan': (GetData._get_vlan, 4),
+                         'ipv4': (GetData._get_ipv4, 5),
+                         'ipv4 subnet': (GetData._get_ipv4_subnet, 6),
+                         'ipv6': (GetData._get_ipv6, 7),
+                         'ipv6 subnet': (GetData._get_ipv6_subnet, 8),
+                         'ethernet vendor': (GetData._get_ether_vendor, 9),
+                         'ignored': (GetData._get_ignored, 10),
+                         'state': (GetData._get_state, 11),
+                         'next state': (GetData._get_next_state, 12),
+                         'first seen': (GetData._get_first_seen, 13),
+                         'last seen': (GetData._get_last_seen, 14),
+                         'previous states': (GetData._get_prev_states, 15),
+                         'ipv4 os': (GetData._get_ipv4_os, 16),
+                         'ipv4 os\n(p0f)': (GetData._get_ipv4_os, 16),
+                         'ipv6 os': (GetData._get_ipv6_os, 17),
+                         'ipv6 os\n(p0f)': (GetData._get_ipv6_os, 17),
+                         'previous ipv4 oses': (GetData._get_prev_ipv4_oses, 18),
+                         'previous ipv4 oses\n(p0f)': (GetData._get_prev_ipv4_oses, 18),
+                         'previous ipv6 oses': (GetData._get_prev_ipv6_oses, 19),
+                         'previous ipv6 oses\n(p0f)': (GetData._get_prev_ipv6_oses, 19),
+                         'role': (GetData._get_role, 20),
+                         'role\n(networkml)': (GetData._get_role, 20),
+                         'role confidence': (GetData._get_role_confidence, 21),
+                         'role confidence\n(networkml)': (GetData._get_role_confidence, 21),
+                         'previous roles': (GetData._get_prev_roles, 22),
+                         'previous roles\n(networkml)': (GetData._get_prev_roles, 22),
+                         'previous role confidences': (GetData._get_prev_role_confidences, 23),
+                         'previous role confidences\n(networkml)': (GetData._get_prev_role_confidences, 23),
+                         'behavior': (GetData._get_behavior, 24),
+                         'behavior\n(networkml)': (GetData._get_behavior, 24),
+                         'previous behaviors': (GetData._get_prev_behaviors, 25),
+                         'previous behaviors\n(networkml)': (GetData._get_prev_behaviors, 25),
+                         'ipv4 rdns': (GetData._get_ipv4_rdns, 26),
+                         'ipv6 rdns': (GetData._get_ipv6_rdns, 27),
+                         'sdn controller type': (GetData._get_controller_type, 28),
+                         'sdn controller uri': (GetData._get_controller, 29),
+                         'history': (GetData._get_history, 30),
+                         'acl history': (GetData._get_acls, 31),
+                         'pcap labels': (GetData._get_pcap_labels, 32)}
+`
+removes rows that are all zero or 'NO DATA'
+delete columns with no data
+
+6. display_table(column_count, max_width, matrix): Displays fields from above in a tabulated manner
+7. display_csv(matrix): use StringIO to create a file like object as a string so that we can use the built in csv contructs so as to properly handle edge/corner cases
+
+#### Poseidon_Shell:
+1. __init__(self, *args, **kwargs): 
+This defines the Poseidon Shell Completely:
+`
+            ['role active-directory-controller', 'role administrator-server',
+            'role administrator-workstation', 'role business-workstation',
+            'role developer-workstation', 'role gpu-laptop', 'role pki-server',
+            'role unknown', 'state active', 'state inactive', 'state known',
+            'state unknown', 'state mirroring', 'state abnormal', 'state shutdown',
+            'state reinvestigating', 'state queued', 'state ignored',
+            'behavior normal', 'behavior abnormal', 'os windows', 'os freebsd',
+            'os linux', 'os mac', 'history', 'version', 'what', 'where', 'all']
+`
+2. show_all(self, arg, flags): Show all things on the network
+
 ## 

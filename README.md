@@ -117,3 +117,29 @@ Configures faucet rules:
 2. Sum hosts learned on VLANs
 3. Sum hosts learned on ports
 4. Convert Port stats to rates (rate for 1m)
+
+## https://github.com/CyberReboot/poseidon/blob/master/helpers/faucet/gauge.yaml
+Sets up gauge
+
+## https://github.com/CyberReboot/poseidon/blob/master/helpers/faucet/prometheus-docker-compose.yml
+sets up prometheus as well scrape-intervals (default is 15s)
+
+## https://github.com/CyberReboot/poseidon/tree/master/tests
+have all the tests for checking each whether poseidon works or not.
+
+# Poseidon (https://github.com/CyberReboot/poseidon/tree/master/poseidon)
+
+## https://github.com/CyberReboot/poseidon/blob/master/poseidon/cli/cli.py
+The main entry point for Poseidon Command Line
+#### Objectives:
+1. gets machine name: _get_name(endpoint)
+2. gets machine mac: _get_mac(endpoint)
+3. gets switch name: _get_switch(endpoint)
+4. gets port name: _get_port(endpoint)
+5. gets vlan data: _get_vlan(endpoint)
+6. gets acls data:  _get_acls(endpoint)
+7. gets ipv4 data: _get_ipv4(endpoint)
+8. returns ipv4 subnet: _get_ipv4_subnet(endpoint)
+9. Returns ether vendor: _get_ether_vendor(endpoint)
+10. 
+## 
